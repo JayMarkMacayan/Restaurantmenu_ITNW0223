@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Menu</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <style>
+    body {
+      /* Default light mode styles */
+      background-color: #f2f2f2;
+      color: #000000;
+    }
+
+    body.dark-mode {
+      /* Dark mode styles */
+      background-color: #222222;
+      color: #ffffff;
+    }
+
+    #header.dark-mode {
+      /* Dark mode styles for header */
+      background-color: #333333;
+      color: #ffffff;
+    }
+
+    #header.dark-mode a {
+      /* Dark mode styles for header links */
+      color: #ffffff;
+    }
+  </style>
+
+  <script>
+    // Function to generate the menu HTML
+    function generateMenu(xml) {
+      var menuHtml = '';
+      $(xml).find('category').each(function() {
+        var categoryName = $(this).attr('name');
+        menuHtml += '<h2>' + categoryName + '</h2>';
+        $(this).find('item').each(function() {
+          var itemName = $(this).find('name').text();
+          var itemPrice = $(this).find('price').text();
+          var itemDescription = $(this).find('description').text();
+          menuHtml += '<div class="item">';
+          menuHtml += '<h3>' + itemName + '</h3>';
+          menuHtml += '<p><strong>Price:</strong> ' + itemPrice + '</p>';
+          menuHtml += '<p><strong>Description:</strong> ' + itemDescription + '</p>';
+          menuHtml += '</div>';
+        });
+      });
+      $('#menu').html(menuHtml);
+    }
+
+    // Function to toggle between dark and light mode
+    function toggleMode() {
+      $('body').toggleClass('dark-mode');
+      updateHomePageDesign();
+      updateModeButton();
+    }
+
+    // Function to update the home page design based on the mode
+    function updateHomePageDesign() {
+      // Check if dark mode is enabled
+      if ($('body').hasClass('dark-mode')) {
+        // Update elements for dark mode
+        $('#header').addClass('dark-mode');
+        $('#header a').addClass('dark-mode');
+      } else {
+        // Update elements for light mode
+        $('#header').removeClass('dark-mode');
+        $('#header a').removeClass('dark-mode');
+      }
+    }
+
+    // Function to update the mode button text based on the mode
+    function updateModeButton() {
+      var button = document.getElementById('mode-button');
+      if ($('body').hasClass('dark-mode')) {
+        button.textContent = 'LIGHT MODE';
+      } else {
+        button.textContent = 'DARK MODE';
+      }
+    }
+
+    // Function to search for food items
+    function searchFood() {
+      var searchTerm = $('#search-input').val().toLowerCase();
+
+      $.ajax({
+        type: "GET",
+        url: "menu.xml",
+        dataType: "xml",
+        cache: false, // Disable caching
+        success: function(xml) {
+          var matchingItems = [];
+
+          $(xml).find('item').each(function() {
+            var itemName = $(this).find('name').text().toLowerCase();
+            if (itemName.includes(searchTerm)) {
+              matchingItems.push(this);
+            }
+          });
+
+          if (matchingItems.length > 0) {
+            var menuHtml = '';
+            menuHtml += '<h2>Search Results</h2>';
+
+            for (var i = 0; i < matchingItems.length; i++) {
+              var itemName = $(matchingItems[i]).find('name').text();
+              var itemPrice = $(matchingItems[i]).find('price').text();
+              var itemDescription = $(matchingItems[i]).find('description').text();
+              menuHtml += '<div class="item">';
+              menuHtml += '<h3>' + itemName + '</h3>';
+              menuHtml += '<p><strong>Price:</strong> ' + itemPrice + '</p>';
+              menuHtml += '<p><strong>Description:</strong> ' + itemDescription + '</p>';
+              menuHtml += '</div>';
+            }
+
+            $('#menu').html(menuHtml);
+          } else {
+            $('#menu').html('<p>No results found.</p>');
+          }
+        },
+        error: function() {
+          alert('Error searching for food.');
+        }
+      });
+    }
+
+    // Document ready function
+    $(document).ready(function() {
+      // Function to fetch and update the menu
+      function updateMenu() {
+        $.ajax({
+          type: "GET",
+          url: "menu.xml",
+          dataType: "xml",
+          cache: false, // Disable caching
+          success: function(xml) {
+            generateMenu(xml);
+          },
+          error: function() {
+            alert('Error updating the menu.');
+          }
+        });
+      }
+
+      // Initial load of the menu
+      updateMenu();
+
+      // Update the menu every 2 seconds (adjust as needed)
+      setInterval(updateMenu, 2000);
+
+      // Update the home page design
+      updateHomePageDesign();
+      updateModeButton();
+
+      // Add event listener to the mode button
+      var button = document.getElementById('mode-button');
+      button.addEventListener('click', toggleMode);
+
+      // Add event listener to the search button
+      var searchButton = document.getElementById('search-button');
+      searchButton.addEventListener('click', searchFood);
+    });
+  </script>
+</head>
+<body>
+  <div id="header">
+    <a href="home.html">HOME</a>
+    <a href="INFORMATION.html">INFORMATION</a>
+    <a href="GALLERY.html">GALLERY</a>
+    <a href="ABOUT US.html">ABOUT US</a>
+    <input type="text" id="search-input" placeholder="Search food...">
+    <button id="search-button">Search</button>
+    <button id="mode-button">DARK MODE</button>
+  </div>
+  <div id="content">
+    <!-- Content of the current page -->
+  </div>
+  <div id="menu"></div>
+</body>
+</html>

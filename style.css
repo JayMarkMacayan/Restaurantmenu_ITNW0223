@@ -1,0 +1,129 @@
+ body {
+      font-family: Arial, sans-serif;
+    }
+
+    #header {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    #header a {
+      display: inline-block;
+      background-color: #555;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    #header a:hover {
+      background-color: #777;
+    }
+
+    #content {
+      margin-top: 20px;
+    }
+
+    #menu {
+      margin-top: 20px;
+    }
+
+    .category {
+      margin-bottom: 10px;
+    }
+
+    .category h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .item h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .item p {
+      margin: 5px 0;
+    }
+
+    .page-transition {
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
+    }
+
+    .category-image {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .category-image img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin: 0 10px;
+      border-radius: 8px;
+    }
+
+    .item {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-family: Verdana, sans-serif;
+      color: blue;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-family: Verdana, sans-serif;
+      color: green;
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+    #header {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    #header a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    
+    #menu {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    #content {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .member {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 10px;
+      text-align: center;
+    }

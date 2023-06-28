@@ -1,0 +1,48 @@
+<menu>
+  <category name="Appetizers">
+    <item>
+      <name>Bruschetta</name>
+      <price>$8.99</price>
+      <description>Toasted bread topped with fresh tomatoes, garlic, and basil.</description>
+    </item>
+    <item>
+      <name>Mozzarella Sticks</name>
+      <price>$7.99</price>
+      <description>Deep-fried breaded mozzarella served with marinara sauce.</description>
+    </item>
+  </category>
+  <category name="Main Courses">
+    <item>
+      <name>Grilled Salmon</name>
+      <price>$18.99</price>
+      <description>Fresh grilled salmon served with roasted vegetables and lemon butter sauce.</description>
+    </item>
+    <item>
+      <name>Chicken Parmesan</name>
+      <price>$15.99</price>
+      <description>Breaded chicken breast topped with marinara sauce and melted mozzarella.</description>
+    </item>
+    <item>
+      <name>Grilled Pizza</name>
+      <price>$15.99</price>
+      <description>Grilling pizza makes a main dish recipe into a party.</description>
+    </item>
+     <item>
+      <name>Habanero BBQ Shrimp</name>
+      <price>$15.99</price>
+      <description>Marinate shrimp in a sweet-and-spicy mixture of apricot preserves, lime juice, habanero, soy sauce, garlic, and ginger</description>
+    </item>   
+  </category>
+  <category name="Dessert">
+    <item>
+      <name> Dark Chocolate Tart</name>
+      <price>$19.99</price>
+      <description>You can use store-bought blueberry filling if you’re in a rush or make your own if you have the fruit on hand.</description>
+    </item>
+    <item>
+      <name>French Apple Cake</name>
+      <price>$24.99</price>
+      <description>With an Eton mess, you’ll break up your meringue, so there’s no need to worry about any little cracks.</description>
+    </item>
+  </category>
+</menu>
